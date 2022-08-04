@@ -106,6 +106,7 @@ function Spinner({ isOpen }) {
 export default function UserInvoice() {
   const { email, username, id: userId } = useSelector((state) => state.user);
   const [data, setData] = useState([]);
+  const [paymentDone, setPaymentDone] = useState(false);
   const [totalData, setTotalData] = useState(0);
   const [addFile, setAddFile] = useState(null);
   const [paymentData, setPaymentData] = useState({
@@ -176,7 +177,7 @@ export default function UserInvoice() {
         // console.log("error");
         console.log(err);
       });
-  }, [invoiceCode]);
+  }, [invoiceCode, paymentDone]);
 
   useEffect(() => {
     getToken();
@@ -251,6 +252,7 @@ export default function UserInvoice() {
   const paymentHandler = () => {
     // setLoading(true);
     let nonce;
+    // ini untuk mengambil data dari drop in
     let getNonce = paymentData.instance
       .requestPaymentMethod()
       .then((nonceData) => {
@@ -602,6 +604,7 @@ export default function UserInvoice() {
               message: "",
             });
             // navigate("/shop", { replace: true });
+            setPaymentDone(true);
           }}
           status={isOpen.status}
           subject={isOpen.subject}
@@ -763,6 +766,7 @@ export default function UserInvoice() {
                   boxShadow: "lg",
                 }}
                 mb="20px"
+                // data yang ada di dalam drop in akan diambil oleh paymentHandler
                 onClick={paymentHandler}
               >
                 Pay

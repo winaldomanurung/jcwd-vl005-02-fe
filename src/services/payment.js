@@ -1,5 +1,7 @@
 import api from "./api";
 
+// Ini akan mengambil token yang sudah digenerate di dalam backend
+// dia akan dijalankan di invoice di bagian getToken
 export const getBraintreeClientToken = () => {
   let url = "/user/payment/getToken";
   return api
@@ -13,6 +15,7 @@ export const getBraintreeClientToken = () => {
     });
 };
 
+// dengan menggunakan token, kita bisa melakukan pembayaran
 export const processPayment = (paymentData) => {
   let url = "/user/payment/getToken/pay";
   return api
