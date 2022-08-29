@@ -842,7 +842,7 @@ export default function UserInvoice() {
           </>
         )}
       </Box>
-      <Button
+      {/* <Button
         onClick={savePDF}
         variant="solid"
         colorScheme="blue"
@@ -855,7 +855,7 @@ export default function UserInvoice() {
         cursor="pointer"
       >
         Download Invoice
-      </Button>
+      </Button> */}
     </>
   );
 }
